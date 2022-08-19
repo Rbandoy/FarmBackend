@@ -23,6 +23,16 @@ PostRoute.route("/postList/")
     }
 	});
 
+PostRoute.route("/postList/:id")
+	.get(async (req, res) => { 
+		try {  
+			let response = await postController.getPostList(req.params.id);
+			res.status(response?.code).send(response);
+		} catch (error) {
+      res.status(error?.code ?? 422).send(error?.message ?? error);
+    }
+	});
+
 PostRoute.route("/postListApproval/")
 	.get(async (req, res) => { 
 		try {  
