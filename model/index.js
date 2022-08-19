@@ -2,7 +2,7 @@ require("dotenv").config();
 const Sequelize = require("sequelize");
 let seq;
 
-seq = new Sequelize(process.env.DB, process.env.USER, process.env.PASS,  {
+seq = new Sequelize(process.env.DB, process.env.DBUSER, process.env.PASS,  {
   dialect: process.env.DIALECT,
   host: process.env.HOST,
   logging: true
