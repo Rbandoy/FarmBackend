@@ -34,7 +34,7 @@ Routes.map(route => {
 });
 
 
-	app.listen(process.env.PORT, "10.116.0.2", () => {
+	app.listen(process.env.PORT, "0.0.0.0", () => {
 		console.log("process.env.PORT", process.env.PORT)
 
 		logger(`Server running on ${ process.env.NODE_ENV } mode in port ${ process.env.PORT }`);
