@@ -73,6 +73,17 @@ PostRoute.route("/createPost/")
       res.status(422).send(error);
     }
 	});
+
+PostRoute.route("/updatePost/")
+	.post(async (req, res) => { 
+		try {  
+			let response = await postController.updatePost(req.body);
+			res.status(response?.code).send(response);
+		} catch (error) {
+			console.log(error)
+      res.status(422).send(error);
+    }
+	});
  
 PostRoute.use("*", (req, res) => {  
 		res.status(401).send("Page Not Found!");

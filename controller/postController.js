@@ -75,6 +75,44 @@ const userController = {
     });
  
     return {code: 200, message: "Succesfully saved!"};
+  },
+
+  updatePost: async (body) => {
+
+    await db.sequelize.transaction(async (t) => {
+    
+    await db.models.postModel.update({
+      postHeaderText: body.title,
+      postDetails: body.details,  
+    }, {
+      where: {
+        id: body.id
+      }
+    }, { transaction: t });  
+
+    await db.models.imageModel.update({
+      status: 3
+    }, {
+      where: {
+        postId: body.id
+      }
+    }, { transaction: t });  
+
+    body.image.map(async item => {
+      return await db.models.imageModel.create(
+        {
+          postId: body.id,
+          image: item.image,
+          status: 1
+        }
+      );
+    });  
+    
+    
+    return {code: 200, message: "Succesfully saved!"};
+    });
+ 
+    return {code: 200, message: "Succesfully saved!"};
   }
 }
 

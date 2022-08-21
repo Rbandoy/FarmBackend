@@ -2,7 +2,7 @@ const db = require("../model");
 
 const imagesController = { 
   getImageList: async (data) => { 
-    let images =  await db.sequelize.query(`SELECT images.* FROM images where postId = ${data.id} order by images.createdAt desc`);
+    let images =  await db.sequelize.query(`SELECT images.* FROM images where postId = ${data.id} and status = 1 order by images.createdAt desc`);
  
     if (!images)  throw { code: 401, message: `Issue encounter while fetching ${data.id} post` };
  
@@ -13,7 +13,7 @@ const imagesController = {
     let create = await db.models.imageModel.create({
       postId: data.postId,
       image: data.imageLink, 
-      status: 0
+      status: 1
     });
     return {code: 200, message: "Succesfully added!", meta: create};
   }
