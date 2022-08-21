@@ -2,11 +2,11 @@ const express = require("express");
 let BookmarkRoute = express.Router();   
 const bookmarkController = require("../controller/bookmarkController");
 
-BookmarkRoute.route("/bookmarkList/")
+BookmarkRoute.route("/bookmarkList/:userid")
 	.get(async (req, res) => { 
 		try { 
-			let data = req.body;
-			let response = await bookmarkController.getBookmarkList(data);
+			let data = req.params;
+ 			let response = await bookmarkController.getBookmarkList(data);
 			res.status(response?.code).send(response);
 		} catch (error) {
       res.status(error?.code ?? 422).send(error?.message ?? error);
