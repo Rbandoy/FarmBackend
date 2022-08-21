@@ -2,6 +2,7 @@ const CommentRoute = require("./comment");
 const ImagesRoute = require("./images");
 const PostRoute = require("./post");
 const UserRoute = require("./user");
+const BookmarkRoute = require("./bookmark");
 const Routes = {
 	routers: () => {
 		return [
@@ -20,6 +21,10 @@ const Routes = {
 			{
 				url: "/images",
 				pathName: ImagesRoute
+			},
+			{
+				url: "/bookmark",
+				pathName: BookmarkRoute
 			}  
 		];
 	}
