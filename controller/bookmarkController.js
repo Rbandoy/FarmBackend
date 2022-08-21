@@ -2,7 +2,7 @@ const db = require("../model");
 const { Op } = require("sequelize");
 const bookmarkController = { 
   getBookmarkList: async (data) => { 
-    let images =  await db.sequelize.query(`SELECT bookmarks.*, post.* FROM bookmarks inner join post on post.userId = bookmarks.userid where bookmarks.userid = '${data.userid === undefined ? "": data.userid}' and bookmarks.status = 1 order by bookmarks.createdAt desc`);
+    let images =  await db.sequelize.query(`SELECT bookmarks.*, post.* FROM bookmarks inner join post on  bookmarks.postid = post.id where bookmarks.userid = '${data.userid === undefined ? "": data.userid}' and bookmarks.status = 1 order by bookmarks.createdAt desc`);
  
     if (!images)  throw { code: 401, message: `Issue encounter while fetching ${data.id} post` };
  
