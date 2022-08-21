@@ -16,5 +16,6 @@ db.models.userModel =  require("./user")(seq, Sequelize.DataTypes);
 db.models.postModel =  require("./post")(seq, Sequelize.DataTypes);
 db.models.commentModel =  require("./comment")(seq, Sequelize.DataTypes);
 db.models.imageModel =  require("./images")(seq, Sequelize.DataTypes);
+db.models.bookmarkModel =  require("./bookmark")(seq, Sequelize.DataTypes);
 
 module.exports = db;
