@@ -26,7 +26,8 @@ const userController = {
   login: async (data) => {
     const user =  await db.models.userModel.findOne({ where: { username: data.username, password: data.password } });
 		if (!user || user.length < 1) return { code: 403, message: "Username and password not found!" }; 
-    
+    delete user.password;
+    delete user.username;
     return {code: 200, message: "Succesfully login", meta: user};
   }
 }
