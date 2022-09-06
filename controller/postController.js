@@ -21,7 +21,7 @@ const userController = {
   },
   getPostListApproval: async () => {
     
-    let post =  await db.sequelize.query(`SELECT CONCAT(user.fname, " ", user.lname) as fname, user.role,user.image, post.* FROM post INNER JOIN user ON user.id = post.userId where post.status = 0 order by post.createdAt desc`);
+    let post =  await db.sequelize.query(`SELECT CONCAT(user.fname, " ", user.lname) as fname, user.role,user.image, post.* FROM post INNER JOIN user ON user.id = post.userId where post.status IN (0,1) order by post.createdAt desc`);
 
     if (!post)  throw { code: 401, message: `Issue encounter while fetching post` }; 
 
