@@ -114,6 +114,18 @@ const userController = {
  
     return {code: 200, message: "Succesfully saved!"};
   }
+	
+  deletePost: async (id) => {
+    await db.models.postModel.update({
+      status: 5
+    }, {
+      where: {
+        id
+      }
+    })
+
+    return {code: 200, message: "Post Deleted!"};
+  }
 }
 
 module.exports = userController;
