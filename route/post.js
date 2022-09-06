@@ -84,6 +84,16 @@ PostRoute.route("/updatePost/")
       res.status(422).send(error);
     }
 	});
+
+PostRoute.route("/deletePost/")
+	.post(async (req, res) => { 
+		try {  
+			let response = await postController.deletePost(req.body.postId);
+			res.status(response?.code).send(response);
+		} catch (error) {
+      res.status(error?.code ?? 422).send(error?.message ?? error);
+    }
+	});
  
 PostRoute.use("*", (req, res) => {  
 		res.status(401).send("Page Not Found!");
