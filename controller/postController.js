@@ -113,7 +113,7 @@ const userController = {
     });
  
     return {code: 200, message: "Succesfully saved!"};
-  }
+  },
 	
   deletePost: async (id) => {
     await db.models.postModel.update({
